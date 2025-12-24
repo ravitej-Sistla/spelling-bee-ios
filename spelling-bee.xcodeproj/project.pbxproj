@@ -15,7 +15,6 @@
 		53B2CB672EFA4E1A009167B7 /* spelling_bee_Watch_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2CB662EFA4E1A009167B7 /* spelling_bee_Watch_AppTests.swift */; };
 		53B2CB712EFA4E1A009167B7 /* spelling_bee_Watch_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2CB702EFA4E1A009167B7 /* spelling_bee_Watch_AppUITests.swift */; };
 		53B2CB732EFA4E1A009167B7 /* spelling_bee_Watch_AppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2CB722EFA4E1A009167B7 /* spelling_bee_Watch_AppUITestsLaunchTests.swift */; };
-		/* Watch App files */
 		53B2CB832EFA5000009167B7 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2CB842EFA5000009167B7 /* UserProfile.swift */; };
 		53B2CB852EFA5001009167B7 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2CB862EFA5001009167B7 /* Word.swift */; };
 		53B2CB872EFA5002009167B7 /* WordBankService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2CB882EFA5002009167B7 /* WordBankService.swift */; };
@@ -29,7 +28,6 @@
 		53B2CB972EFA500A009167B7 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2CB982EFA500A009167B7 /* GameView.swift */; };
 		53B2CB992EFA500B009167B7 /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2CB9A2EFA500B009167B7 /* FeedbackView.swift */; };
 		53B2CB9B2EFA500C009167B7 /* LevelCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2CB9C2EFA500C009167B7 /* LevelCompleteView.swift */; };
-		/* iOS App Build Files */
 		53B2CC012EFA6000009167B7 /* spelling_bee_iOS_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2CC102EFA6000009167B7 /* spelling_bee_iOS_App.swift */; };
 		53B2CC022EFA6001009167B7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2CC112EFA6001009167B7 /* ContentView.swift */; };
 		53B2CC032EFA6002009167B7 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B2CC122EFA6002009167B7 /* UserProfile.swift */; };
@@ -98,7 +96,6 @@
 		53B2CB6C2EFA4E1A009167B7 /* spelling-bee Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "spelling-bee Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53B2CB702EFA4E1A009167B7 /* spelling_bee_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spelling_bee_Watch_AppUITests.swift; sourceTree = "<group>"; };
 		53B2CB722EFA4E1A009167B7 /* spelling_bee_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spelling_bee_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		/* Watch App file references */
 		53B2CB842EFA5000009167B7 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		53B2CB862EFA5001009167B7 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		53B2CB882EFA5002009167B7 /* WordBankService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WordBankService.swift; sourceTree = "<group>"; };
@@ -112,7 +109,6 @@
 		53B2CB982EFA500A009167B7 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		53B2CB9A2EFA500B009167B7 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
 		53B2CB9C2EFA500C009167B7 /* LevelCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCompleteView.swift; sourceTree = "<group>"; };
-		/* iOS App file references */
 		53B2CC002EFA6000009167B7 /* spelling-bee iOS App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "spelling-bee iOS App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53B2CC102EFA6000009167B7 /* spelling_bee_iOS_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spelling_bee_iOS_App.swift; sourceTree = "<group>"; };
 		53B2CC112EFA6001009167B7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -227,7 +223,6 @@
 			path = "spelling-bee Watch AppUITests";
 			sourceTree = "<group>";
 		};
-		/* Watch App groups */
 		53B2CBA02EFA5010009167B7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,7 +288,6 @@
 			path = Game;
 			sourceTree = "<group>";
 		};
-		/* iOS App groups */
 		53B2CC202EFA6010009167B7 /* spelling-bee iOS App */ = {
 			isa = PBXGroup;
 			children = (
@@ -759,8 +753,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Spelling Bee Queen";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Spelling Bee needs to hear you spell words";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Spelling Bee uses the microphone to listen to your spelling";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Spelling Bee needs to hear you spell words";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -791,8 +785,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Spelling Bee Queen";
-				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Spelling Bee needs to hear you spell words";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Spelling Bee uses the microphone to listen to your spelling";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Spelling Bee needs to hear you spell words";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -929,7 +923,6 @@
 			};
 			name = Release;
 		};
-		/* iOS App Build Configurations */
 		53B2CC512EFA6041009167B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -941,6 +934,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Spelling Bee Queen";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Spelling Bee uses the microphone to listen to your spelling";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Spelling Bee needs to hear you spell words";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -948,6 +942,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -959,7 +954,6 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 			};
 			name = Debug;
 		};
@@ -974,6 +968,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "Spelling Bee Queen";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Spelling Bee uses the microphone to listen to your spelling";
 				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Spelling Bee needs to hear you spell words";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -981,6 +976,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -993,7 +989,6 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 			};
 			name = Release;
 		};
