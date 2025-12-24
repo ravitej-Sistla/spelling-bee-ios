@@ -1,0 +1,129 @@
+//
+//  SettingsView.swift
+//  spelling-bee iOS App
+//
+//  Settings screen for changing grade and viewing profile.
+//
+
+import SwiftUI
+
+struct SettingsView: View {
+    @EnvironmentObject var appState: AppState
+    @ObservedObject var speechService = SpeechService.shared
+    @State private var selectedGrade: Int = 1
+    @State private var showResetConfirm = false
+
+    var body: some View {
+        NavigationStack {
+            List {
+                // Profile Section
+                Section {
+                    HStack(spacing: 16) {
+                        Text("🐝")
+                            .font(.system(size: 50))
+
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(appState.profile?.name ?? "Speller")
+                                .font(.title2)
+                                .fontWeight(.bold)
+
+                            Text("\(appState.profile?.completedLevels.count ?? 0) levels completed")
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                    .padding(.vertical, 8)
+                }
+
+                // Grade Section
+                Section("Grade Level") {
+                    Picker("Current Grade", selection: $selectedGrade) {
+                        ForEach(1...7, id: \.self) { grade in
+                            Text("Grade \(grade)").tag(grade)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    .onChange(of: selectedGrade) { newValue in
+                        appState.updateGrade(newValue)
+                    }
+
+                    Text("Words will match your grade level")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+
+                // Voice Section
+                Section("Voice") {
+                    Picker("Voice", selection: $speechService.selectedVoice) {
+                        ForEach(speechService.availableVoices) { voice in
+                            Text(voice.name).tag(voice)
+                        }
+                    }
+                    .pickerStyle(.menu)
+
+                    Button {
+                        speechService.previewVoice(speechService.selectedVoice)
+                    } label: {
+                        HStack {
+                            Label("Preview Voice", systemImage: "speaker.wave.2.fill")
+                            Spacer()
+                            if speechService.isSpeaking {
+                                ProgressView()
+                                    .scaleEffect(0.8)
+                            }
+                        }
+                    }
+                    .disabled(speechService.isSpeaking)
+                }
+
+                // Speech Recognition Section
+                Section("Speech Recognition") {
+                    HStack {
+                        Label("Microphone", systemImage: "mic.fill")
+                        Spacer()
+                        Text(speechService.speechAuthorizationStatus == .authorized ? "Enabled" : "Disabled")
+                            .foregroundColor(.secondary)
+                    }
+                }
+
+                // Danger Zone
+                Section {
+                    Button(role: .destructive) {
+                        showResetConfirm = true
+                    } label: {
+                        Label("Reset All Progress", systemImage: "arrow.counterclockwise")
+                    }
+                } footer: {
+                    Text("This will delete all your progress and start fresh.")
+                }
+            }
+            .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Done") {
+                        appState.navigateToHome()
+                    }
+                }
+            }
+            .onAppear {
+                selectedGrade = appState.profile?.grade ?? 1
+            }
+            .alert("Reset Progress?", isPresented: $showResetConfirm) {
+                Button("Cancel", role: .cancel) {}
+                Button("Reset", role: .destructive) {
+                    appState.resetApp()
+                }
+            } message: {
+                Text("This will delete all your progress. This action cannot be undone.")
+            }
+        }
+    }
+}
+
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingsView()
+            .environmentObject(AppState())
+    }
+}
