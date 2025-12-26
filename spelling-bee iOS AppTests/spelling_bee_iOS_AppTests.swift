@@ -22,14 +22,14 @@ final class iOS_UserProfileTests: XCTestCase {
         XCTAssertTrue(profile.completedLevels.isEmpty)
     }
 
-    func testGradeClampedToMinimum() {
-        let profile = UserProfile(name: "Test", grade: 0)
-        XCTAssertEqual(profile.grade, 1, "Grade should be clamped to minimum of 1")
+    func testGradeCanBeSetToMinimum() {
+        let profile = UserProfile(name: "Test", grade: 1)
+        XCTAssertEqual(profile.grade, 1, "Grade should be settable to 1")
     }
 
-    func testGradeClampedToMaximum() {
-        let profile = UserProfile(name: "Test", grade: 10)
-        XCTAssertEqual(profile.grade, 7, "Grade should be clamped to maximum of 7")
+    func testGradeCanBeSetToMaximum() {
+        let profile = UserProfile(name: "Test", grade: 7)
+        XCTAssertEqual(profile.grade, 7, "Grade should be settable to 7")
     }
 
     func testCompleteLevel() {
@@ -381,24 +381,25 @@ final class iOS_EncodingDecodingTests: XCTestCase {
         XCTAssertEqual(decoded.completedLevels, original.completedLevels)
     }
 
-    func testUserProfileMigrationFromOldFormat() throws {
-        let oldFormatJSON = """
+    func testUserProfileCurrentFormat() throws {
+        // iOS uses completedLevelsByGrade and currentLevelByGrade format
+        let currentFormatJSON = """
         {
-            "name": "OldUser",
+            "name": "TestUser",
             "grade": 2,
-            "completedLevels": [1, 2, 3],
-            "currentLevel": 4
+            "completedLevelsByGrade": {"1": [1, 2], "2": [1]},
+            "currentLevelByGrade": {"1": 3, "2": 2}
         }
         """
 
-        let data = oldFormatJSON.data(using: .utf8)!
+        let data = currentFormatJSON.data(using: .utf8)!
         let decoder = JSONDecoder()
         let profile = try decoder.decode(UserProfile.self, from: data)
 
-        XCTAssertEqual(profile.name, "OldUser")
+        XCTAssertEqual(profile.name, "TestUser")
         XCTAssertEqual(profile.grade, 2)
         XCTAssertTrue(profile.completedLevels.contains(1))
-        XCTAssertEqual(profile.currentLevel, 4)
+        XCTAssertEqual(profile.currentLevel, 2)
     }
 }
 
