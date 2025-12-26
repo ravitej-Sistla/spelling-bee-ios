@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Screenshot Placeholder Generator</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #1a1a1a;
+            color: white;
+            padding: 40px;
+        }
+        h1 { color: #00D4FF; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .placeholder {
+            text-align: center;
+        }
+        .placeholder h3 {
+            margin-top: 15px;
+            color: #00D4FF;
+        }
+        .placeholder p {
+            color: #888;
+            font-size: 14px;
+        }
+        /* iPhone Frame */
+        .iphone-frame {
+            width: 200px;
+            height: 430px;
+            background: linear-gradient(135deg, #4B1A8F, #6B2EB5);
+            border-radius: 25px;
+            border: 3px solid rgba(255,255,255,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .iphone-frame .emoji {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+        .iphone-frame .label {
+            font-size: 14px;
+            color: white;
+            font-weight: 600;
+        }
+        .iphone-frame .sublabel {
+            font-size: 11px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 5px;
+        }
+        /* Watch Frame */
+        .watch-frame {
+            width: 140px;
+            height: 170px;
+            background: linear-gradient(135deg, #4B1A8F, #6B2EB5);
+            border-radius: 35px;
+            border: 3px solid rgba(255,255,255,0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        .watch-frame .emoji {
+            font-size: 35px;
+            margin-bottom: 8px;
+        }
+        .watch-frame .label {
+            font-size: 10px;
+            color: white;
+            font-weight: 600;
+        }
+        .instructions {
+            background: rgba(0,212,255,0.1);
+            border: 1px solid #00D4FF;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        .instructions h2 {
+            color: #00D4FF;
+            margin-bottom: 15px;
+        }
+        .instructions ol {
+            padding-left: 20px;
+            line-height: 1.8;
+        }
+        .instructions code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🐝 Spelling Bee Queen - Screenshot Guide</h1>
+
+    <div class="instructions">
+        <h2>How to Take Screenshots</h2>
+        <ol>
+            <li>Open Xcode and run the app on <strong>iPhone 14 Pro</strong> or <strong>Apple Watch Series 8</strong> simulator</li>
+            <li>Navigate to each screen shown below</li>
+            <li>Press <code>Cmd + S</code> to save the screenshot</li>
+            <li>Rename the file to match the filename shown below</li>
+            <li>Move the file to the <code>images/</code> folder</li>
+        </ol>
+    </div>
+
+    <h2>iPhone Screenshots</h2>
+    <div class="grid">
+        <div class="placeholder">
+            <div class="iphone-frame">
+                <div class="emoji">🏠</div>
+                <div class="label">Home Screen</div>
+                <div class="sublabel">Level grid view</div>
+            </div>
+            <h3>iphone-home.png</h3>
+            <p>Home screen showing all 50 levels</p>
+        </div>
+        <div class="placeholder">
+            <div class="iphone-frame">
+                <div class="emoji">✏️</div>
+                <div class="label">Spelling Input</div>
+                <div class="sublabel">Type the word</div>
+            </div>
+            <h3>iphone-spelling.png</h3>
+            <p>Spelling input with keyboard/voice</p>
+        </div>
+        <div class="placeholder">
+            <div class="iphone-frame">
+                <div class="emoji">🎉</div>
+                <div class="label">Correct!</div>
+                <div class="sublabel">Celebration screen</div>
+            </div>
+            <h3>iphone-correct.png</h3>
+            <p>Correct answer celebration</p>
+        </div>
+        <div class="placeholder">
+            <div class="iphone-frame">
+                <div class="emoji">🏆</div>
+                <div class="label">Level Complete</div>
+                <div class="sublabel">With confetti</div>
+            </div>
+            <h3>iphone-level-complete.png</h3>
+            <p>Level complete with celebration</p>
+        </div>
+        <div class="placeholder">
+            <div class="iphone-frame">
+                <div class="emoji">📚</div>
+                <div class="label">Grade Selection</div>
+                <div class="sublabel">Grades 1-7</div>
+            </div>
+            <h3>iphone-grades.png</h3>
+            <p>Onboarding grade selection</p>
+        </div>
+    </div>
+
+    <h2 style="margin-top: 50px;">Apple Watch Screenshots</h2>
+    <div class="grid">
+        <div class="placeholder">
+            <div class="watch-frame">
+                <div class="emoji">🏠</div>
+                <div class="label">Home</div>
+            </div>
+            <h3>watch-home.png</h3>
+            <p>Watch home screen</p>
+        </div>
+        <div class="placeholder">
+            <div class="watch-frame">
+                <div class="emoji">✏️</div>
+                <div class="label">Spell</div>
+            </div>
+            <h3>watch-spelling.png</h3>
+            <p>Watch spelling input</p>
+        </div>
+        <div class="placeholder">
+            <div class="watch-frame">
+                <div class="emoji">🎉</div>
+                <div class="label">Correct!</div>
+            </div>
+            <h3>watch-correct.png</h3>
+            <p>Watch correct answer</p>
+        </div>
+        <div class="placeholder">
+            <div class="watch-frame">
+                <div class="emoji">🏆</div>
+                <div class="label">Complete</div>
+            </div>
+            <h3>watch-level-complete.png</h3>
+            <p>Watch level complete</p>
+        </div>
+    </div>
+</body>
+</html>
