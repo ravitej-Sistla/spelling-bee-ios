@@ -106,11 +106,10 @@ struct PlaceholderAdView: View {
 
                 // Placeholder ad content
                 VStack(spacing: 16) {
-                    Image(systemName: "star.circle.fill")
+                    Text("🐝")
                         .font(.system(size: 60))
-                        .foregroundColor(.yellow)
 
-                    Text("Spelling Bee Queen")
+                    Text("Spellflare")
                         .font(.title2)
                         .fontWeight(.bold)
                         .foregroundColor(.white)

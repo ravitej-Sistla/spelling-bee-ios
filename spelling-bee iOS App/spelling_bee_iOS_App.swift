@@ -39,6 +39,7 @@ struct UITestingConfig {
 struct spelling_bee_iOS_App: App {
     @StateObject private var appState: AppState
     @StateObject private var storeManager: StoreManager
+    @Environment(\.scenePhase) private var scenePhase
 
     init() {
         // Configure for UI testing if needed
@@ -67,6 +68,11 @@ struct spelling_bee_iOS_App: App {
                     // Pass UI testing config to appState if needed
                     if UITestingConfig.simulateLevelComplete {
                         appState.uiTestingSimulateLevelComplete = true
+                    }
+                }
+                .onChange(of: scenePhase) { newPhase in
+                    if newPhase == .active {
+                        appState.onAppBecameActive()
                     }
                 }
         }

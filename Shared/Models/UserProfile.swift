@@ -1,6 +1,8 @@
 //
 //  UserProfile.swift
-//  spelling-bee Watch App
+//  Shared
+//
+//  User profile data model - shared across iOS and watchOS.
 //
 
 import Foundation
@@ -57,7 +59,7 @@ struct UserProfile: Codable, Equatable {
         return completedLevelsByGrade[grade]?.contains(level) ?? false
     }
 
-    // Migration from old format
+    // Migration from old format - supports both iOS and watchOS legacy keys
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
@@ -67,7 +69,10 @@ struct UserProfile: Codable, Equatable {
         if let levelsByGrade = try? container.decode([Int: Set<Int>].self, forKey: .completedLevelsByGrade) {
             completedLevelsByGrade = levelsByGrade
         } else if let oldCompletedLevels = try? container.decode(Set<Int>.self, forKey: .completedLevels) {
-            // Migration: old format had completedLevels as Set<Int>
+            // Migration: watchOS old format had completedLevels as Set<Int>
+            completedLevelsByGrade = [grade: oldCompletedLevels]
+        } else if let oldCompletedLevels = try? container.decode(Set<Int>.self, forKey: .completedLevelsByGrade) {
+            // Migration: iOS old format stored Set<Int> under completedLevelsByGrade key
             completedLevelsByGrade = [grade: oldCompletedLevels]
         } else {
             completedLevelsByGrade = [:]
@@ -76,7 +81,10 @@ struct UserProfile: Codable, Equatable {
         if let currentByGrade = try? container.decode([Int: Int].self, forKey: .currentLevelByGrade) {
             currentLevelByGrade = currentByGrade
         } else if let oldCurrentLevel = try? container.decode(Int.self, forKey: .currentLevel) {
-            // Migration: old format had currentLevel as Int
+            // Migration: watchOS old format had currentLevel as Int
+            currentLevelByGrade = [grade: oldCurrentLevel]
+        } else if let oldCurrentLevel = try? container.decode(Int.self, forKey: .currentLevelByGrade) {
+            // Migration: iOS old format stored Int under currentLevelByGrade key
             currentLevelByGrade = [grade: oldCurrentLevel]
         } else {
             currentLevelByGrade = [:]

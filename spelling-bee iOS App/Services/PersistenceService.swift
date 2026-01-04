@@ -2,7 +2,7 @@
 //  PersistenceService.swift
 //  spelling-bee iOS App
 //
-//  Handles local data persistence using UserDefaults.
+//  Handles local data persistence, delegating to shared LocalCacheService.
 //
 
 import Foundation
@@ -10,23 +10,17 @@ import Foundation
 class PersistenceService {
     static let shared = PersistenceService()
 
-    private let profileKey = "userProfile_iOS"
+    private let localCache = LocalCacheService.shared
 
     func saveProfile(_ profile: UserProfile) {
-        if let encoded = try? JSONEncoder().encode(profile) {
-            UserDefaults.standard.set(encoded, forKey: profileKey)
-        }
+        localCache.saveProfile(profile)
     }
 
     func loadProfile() -> UserProfile? {
-        guard let data = UserDefaults.standard.data(forKey: profileKey),
-              let profile = try? JSONDecoder().decode(UserProfile.self, from: data) else {
-            return nil
-        }
-        return profile
+        return localCache.loadProfile()
     }
 
     func deleteProfile() {
-        UserDefaults.standard.removeObject(forKey: profileKey)
+        localCache.clearAll()
     }
 }

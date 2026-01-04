@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 enum AppScreen: Equatable {
     case onboarding
@@ -19,6 +20,7 @@ enum AppScreen: Equatable {
 class AppState: ObservableObject {
     @Published var currentScreen: AppScreen = .onboarding
     @Published var profile: UserProfile?
+    @Published private(set) var syncStatus: SyncStatus = .idle
 
     // MARK: - UI Testing Properties
     /// When true, GameViewModel should simulate immediate level completion
@@ -26,10 +28,13 @@ class AppState: ObservableObject {
     private let uiTestingMode: Bool
 
     private let persistence = PersistenceService.shared
+    private let phoneSyncHelper = PhoneSyncHelper.shared
+    private var cancellables = Set<AnyCancellable>()
 
     /// Standard initializer for production use
     init() {
         self.uiTestingMode = false
+        setupSyncObserver()
         loadProfile()
     }
 
@@ -55,8 +60,18 @@ class AppState: ObservableObject {
                 loadProfile()
             }
         } else {
+            setupSyncObserver()
             loadProfile()
         }
+    }
+
+    private func setupSyncObserver() {
+        phoneSyncHelper.$syncStatus
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] status in
+                self?.syncStatus = status
+            }
+            .store(in: &cancellables)
     }
 
     func loadProfile() {
@@ -78,6 +93,7 @@ class AppState: ObservableObject {
         profile = newProfile
         if !uiTestingMode {
             persistence.saveProfile(newProfile)
+            phoneSyncHelper.pushLocalChanges()
         }
         currentScreen = .home
     }
@@ -86,6 +102,7 @@ class AppState: ObservableObject {
         profile?.grade = grade
         if let profile = profile, !uiTestingMode {
             persistence.saveProfile(profile)
+            phoneSyncHelper.pushLocalChanges()
         }
     }
 
@@ -93,6 +110,7 @@ class AppState: ObservableObject {
         profile?.completeLevel(level)
         if let profile = profile, !uiTestingMode {
             persistence.saveProfile(profile)
+            phoneSyncHelper.pushLocalChanges()
         }
     }
 
@@ -110,9 +128,26 @@ class AppState: ObservableObject {
 
     func resetApp() {
         if !uiTestingMode {
-            persistence.deleteProfile()
+            SyncCoordinator.shared.deleteAllData()
         }
         profile = nil
         currentScreen = .onboarding
+    }
+
+    // MARK: - Sync Triggers
+
+    func onAppBecameActive() {
+        guard !uiTestingMode else { return }
+        phoneSyncHelper.syncOnAppear()
+
+        // Reload profile after sync
+        Task {
+            try? await Task.sleep(nanoseconds: 500_000_000) // Wait 0.5s for sync
+            await MainActor.run {
+                if let syncedProfile = persistence.loadProfile() {
+                    self.profile = syncedProfile
+                }
+            }
+        }
     }
 }

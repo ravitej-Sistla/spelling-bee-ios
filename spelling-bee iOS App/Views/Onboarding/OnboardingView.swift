@@ -67,7 +67,7 @@ struct WelcomeStep: View {
             Text("🐝")
                 .font(.system(size: 100))
 
-            Text("Spelling Bee")
+            Text("Spellflare")
                 .font(.largeTitle)
                 .fontWeight(.bold)
                 .foregroundColor(.orange)
